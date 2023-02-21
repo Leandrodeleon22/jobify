@@ -14,7 +14,7 @@ const JobSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["interview", " declined", "pending"],
+      enum: ["interview", "declined", "pending"],
       default: "pending",
     },
     jobType: {
@@ -37,5 +37,7 @@ const JobSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+mongoose.set("strictQuery", false);
 
 export default mongoose.model("Job", JobSchema);
