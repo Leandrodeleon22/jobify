@@ -5977,5 +5977,3 @@ package.json
 - git add .
 - git commit -m "first commit"
 - push up to Github
-
-end
