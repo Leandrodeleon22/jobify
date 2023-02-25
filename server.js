@@ -34,10 +34,10 @@ app.use(helmet());
 app.use(xss());
 app.use(mongoSanitize());
 
-// app.use(express.static(path.join(__dirname, "build")));
-// app.get("/", function (req, res) {
-//   res.sendFile(path.join(__dirname, "build", "index.html"));
-// });
+app.use(express.static(path.join(__dirname, "build")));
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
@@ -49,9 +49,9 @@ app.get("/api/v1", (req, res) => {
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/jobs", authenticateUser, jobRoutes);
 
-// app.get("*", function (request, response) {
-//   response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-// });
+app.get("*", function (request, response) {
+  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
