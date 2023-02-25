@@ -2,6 +2,7 @@
 import express from "express";
 import "express-async-errors";
 import dotenv from "dotenv";
+const path = require("path");
 const app = express();
 
 dotenv.config();
@@ -23,7 +24,7 @@ import xss from "xss-clean";
 
 import mongoSanitize from "express-mongo-sanitize";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+// const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // app.use(express.static(path.resolve(__dirname, "./client/build")));
 
@@ -32,6 +33,11 @@ app.use(express.json());
 app.use(helmet());
 app.use(xss());
 app.use(mongoSanitize());
+
+// app.use(express.static(path.join(__dirname, "build")));
+// app.get("/", function (req, res) {
+//   res.sendFile(path.join(__dirname, "build", "index.html"));
+// });
 
 if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
