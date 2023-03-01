@@ -68,12 +68,17 @@ if (process.env.NODE_ENV !== "production") {
   app.use(morgan("dev"));
 }
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "build")));
-  app.get("*", function (request, response) {
-    response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-  });
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static(path.resolve(__dirname, "./client/build")));
+//   app.get("*", function (request, response) {
+//     response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+//   });
+// }
+
+app.use(express.static(path.resolve(__dirname, "./client/build")));
+app.get("*", function (request, response) {
+  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+});
 
 app.get("/api/v1", (req, res) => {
   res.send({ msg: "Welcome" });
