@@ -38,6 +38,23 @@ app.use(cors());
 //   next();
 // });
 
+// app.use(function (req, res, next) {
+//   // Allow any domain to access the resource
+//   res.header("Access-Control-Allow-Origin", "*");
+
+//   // Allow only GET and POST requests
+//   res.header("Access-Control-Allow-Methods", "GET, POST");
+
+//   // Allow the following request headers
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+
+// Call next() to move on to the next middleware in the chain
+//   next();
+// });
+
 app.use(express.json());
 app.use(helmet());
 app.use(xss());
